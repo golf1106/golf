@@ -3,6 +3,9 @@
 <div class="tweet">
   <p><%= @tweet.club %></p>
   <p><%= @tweet.created_at %></p>
+  <% if @tweet.image? %>
+      <%= image_tag @tweet.image, size: '250x200'%>
+  <% end %>
 </div>
 <% @tweet.tags.each do |tag| %>
     <span><%= tag.name %></span>

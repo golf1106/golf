@@ -45,6 +45,6 @@ end
 
   private
   def tweet_params
-    params.require(:tweet).permit(:club, :price,:point,:tag_ids,:image [])
+    params.require(:tweet).permit(:club, :price, :point, :image, tag_ids: [])
   end
 end
