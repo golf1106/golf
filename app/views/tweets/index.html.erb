@@ -1,0 +1,41 @@
+  <h1>golf club</h1>
+<h3>一覧ページ</h3>
+<%= form_with url: tweets_path, method: :get, local: true do %>
+  <h3>検索</h3>
+  <%= text_field_tag :search, params[:search], placeholder: "商品名や大学名で検索" %>
+
+  <% ["メーカー", "種類", "特徴"].each do |cat| %>
+  <h4><%= cat %>で検索</h4>
+  <div class="tags">
+    <% Tag.where(category: cat).each do |tag| %>
+      <div class="tag">
+        <%= check_box_tag "tag_ids[#{tag.id}]", "1", params.dig(:tag_ids, tag.id.to_s) == "1", id: "tag_ids_#{tag.id}" %>
+        <%= label_tag "tag_ids_#{tag.id}", tag.name %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+ <%= submit_tag '検索' %>
+<% end %>
+
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+<%= link_to "新規投稿へ", new_tweet_path %>
+<div class="tweets-container">
+  <% @tweets.each do |t| %>
+    <div class="tweet">
+      <% if t.image? %>
+            <%= image_tag t.image.url, size: '250x200'%>
+      <% end %>
+     <div class="main-box">
+      <div class="left-container"><%= t.club %></div>
+      <div class="right-container">
+      <%= t.created_at %>
+      <%= link_to "詳細へ", tweet_path(t.id) %>
+      <%= link_to "編集する", edit_tweet_path(t.id) %>
+      <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+      </div>
+    </div>
+    <p class="time"><%= t.created_at %></p>
+  <% end %>
+</div>

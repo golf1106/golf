@@ -1,0 +1,6 @@
+<%= form_for @tweet do |f| %>
+  <%= f.label :club %>
+  <%= f.text_field :club, :size => 140 %> 
+  <%= f.submit "編集する" %>
+  <%= link_to "トップ", tweet_path(@tweet.id) %>
+<% end %>
