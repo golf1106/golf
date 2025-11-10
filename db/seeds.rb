@@ -20,7 +20,7 @@ Tag.create([
   { name: 'コスパ重視',category:"その他" },
   { name: 'ドライバー',category:"種類" },
   { name: 'ウッド',category:"種類" },
-  { name: 'ユーティリティー',category:"種類"}
+  { name: 'ユーティリティー',category:"種類"},
   { name: 'アイアン',category:"種類" },
   { name: 'ウェッジ',category:"種類" },
   { name: 'パター',category:"種類"},
