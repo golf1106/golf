@@ -8,6 +8,7 @@ gem "sprockets-rails"
 # gem "sqlite3", ">= 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
+gem "sqlite3", ">= 1.4"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -43,8 +44,6 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-  gem 'sqlite3' # 追加
-  gem 'dotenv-rails' # 追加
 end
 
 group :development do
@@ -59,12 +58,10 @@ group :test do
 end
 # PostgreSQL → 本番用
 group :production do
-  gem 'pg'
+  gem "pg", "~> 1.4"
 end
 
 gem 'devise'
-gem 'carrierwave'
 gem 'cloudinary'
-gem 'dotenv-rails'
 gem 'sass-rails'
 gem 'activestorage-cloudinary-service'
