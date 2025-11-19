@@ -3,7 +3,7 @@
   <h2 class="page-title">ゴルフクラブ一覧</h2>
 
 <div class="club-list">
-  <% @tweets.distinct.each do |club| %>
+  <% @tweets.each do |club| %>
     <div class="club-card">
       <div class="club-image">
         <% if club.image.present? %>
