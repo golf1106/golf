@@ -1,38 +1,38 @@
- <h1>(golf club)</h1>
+<h1>ゴルフクラブ</h1>
 <h3>新規投稿ページ</h3>
-<%= form_for @tweet do |f| %>
 
+<%= form_with model: @tweet, local: true, html: { multipart: true } do |f| %>
   <div class='form-group'>
-        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-            <div class='form-check'>
-                <%= tag.label class: 'form-check-label' do %>
-                    <%= tag.check_box class: 'form-check-input' %>
-                    <%= tag.text %>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
- <div class="field">
+    <% Tag.pluck(:name).uniq.each do |tag_name| %>
+      <% tag = Tag.find_by(name: tag_name) %>
+      <div class='form-check'>
+        <%= check_box_tag "tweet[tag_ids][]", tag.id, @tweet.tags.include?(tag), id: "tag_ids_#{tag.id}", class: "form-check-input" %>
+        <%= label_tag "tag_ids_#{tag.id}", tag.name, class: "form-check-label" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :club %>
-    <%= f.text_field :club, :size => 30 %>
+    <%= f.text_field :club, size: 30 %>
   </div>
-    <div class="field">
-    <%= f.label :price  %>
-    <%= f.number_field :price, :size => 10 %>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price, size: 10 %>
   </div>
-    <div class="field">
-    <%= f.label :point  %>
-    <%= f.text_area :point, :size => "30x2" %>
+
+  <div class="field">
+    <%= f.label :point,"ポイント" %>
+    <%= f.text_area :point, rows: 2, cols: 30 %>
   </div>
-   <div class="field">
- <div class="field">
+
+  <div class="field">
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
-    <%= f.submit "投稿する" %>
+
+  <%= f.submit "投稿する" %>
 <% end %>
 
 <%= link_to "一覧に戻る", tweets_path %>
-
- 
-

@@ -1,13 +1,62 @@
-<h1>golf club</h1>
-<h3>Tweet詳細</h3>
-<div class="tweet">
-  <p><%= @tweet.club %></p>
-  <p><%= @tweet.created_at %></p>
-  <% if @tweet.image? %>
-      <%= image_tag @tweet.image, size: '250x200'%>
+<div class="show-page-wrapper">
+
+  <!-- メインコンテンツ -->
+  <div class="main-content-area">
+    <div class="tweet-show-container">
+
+      <div class="tweet-card">
+        <h1 class="title"><%= @tweet.club %></h1>
+        <p class="date"><%= @tweet.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+
+        <p class="point">
+          <strong>ポイント：</strong><%= @tweet.point %>
+        </p>
+
+        <% if @tweet.image.present? %>
+          <div class="image-wrap">
+            <%= image_tag @tweet.image, class: "club-image" %>
+          </div>
+        <% end %>
+
+        <div class="tag-wrap">
+          <% @tweet.tags.each do |tag| %>
+            <span class="tag"><%= tag.name %></span>
+          <% end %>
+        </div>
+
+        <div class="back-link">
+          <%= link_to "Tweet一覧に戻る", tweets_path %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- サイドバー -->
+  <aside class="sidebar">
+  <% if @recommended_clubs.present? %>
+    <h3>おすすめクラブ</h3>
+    <ul>
+     <% @recommended_clubs.each do |club| %>
+      <li><%= link_to club.club, tweet_path(club) %></li>
+     <% end %>
+    </ul>
   <% end %>
+
+
+    <h3>関連タグ</h3>
+    <div class="sidebar-tags">
+      <% @tweet.tags.each do |tag| %>
+        <span class="tag"><%= tag.name %></span>
+      <% end %>
+    </div>
+
+    <h3>同じメーカーのクラブ</h3>
+    <div class="sidebar">
+      <% @same_brand_clubs.each do |club| %>
+        <li><%= link_to club.club, tweet_path(club) %></li>
+      <% end %>
+    </div>
+  </aside>
+    
 </div>
-<% @tweet.tags.each do |tag| %>
-    <span><%= tag.name %></span>
-<% end %>
-<%= link_to "Tweet一覧に戻る", tweets_path %>

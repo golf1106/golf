@@ -1,0 +1,32 @@
+<h2 class="page-title">クラブ検索</h2>
+
+<div class="search-box">
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, placeholder: "クラブ名・キーワードで検索", class: "search-input" %>
+    <%= f.submit "検索", class: "search-btn" %>
+  <% end %>
+</div>
+
+<% if @tweets.any? %>
+  <h3 class="result-title">検索結果</h3>
+
+  <div class="club-list">
+    <% @tweets.each do |club| %>
+      <div class="club-card">
+        <div class="club-image">
+          <% if club.image.attached? %>
+            <%= image_tag url_for(club.image) %>
+          <% else %>
+            <img src="https://placehold.co/300x180?text=No+Image" alt="image">
+          <% end %>
+        </div>
+
+        <div class="club-info">
+          <h3 class="club-name"><%= club.club %></h3>
+
+          <%= link_to "詳細を見る", tweet_path(club), class: "detail-btn" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

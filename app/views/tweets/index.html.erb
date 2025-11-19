@@ -1,13 +1,39 @@
 <h1>golf club</h1>
-<h3>一覧ページ</h3>
 <%= form_with url: tweets_path, method: :get, local: true do %>
+  <h2 class="page-title">ゴルフクラブ一覧</h2>
+
+<div class="club-list">
+  <% @tweets.distinct.each do |club| %>
+    <div class="club-card">
+      <div class="club-image">
+        <% if club.image.present? %>
+          <%= image_tag url_for(club.image) %>
+
+        <% else %>
+          <img src="app/assets/images/ごるｈ.avif" alt="image">
+        <% end %>
+      </div>
+
+      <div class="club-info">
+        <h3 class="club-name"><%= club.club %></h3>
+        <p class="club-brand"><%= club.brand %></p>
+
+        <%= link_to "詳細を見る", tweet_path(club), class: "detail-btn" %>
+        <%= button_to "削除する", tweet_path(club), method: :delete %>
+        <%= link_to "編集する", edit_tweet_path(club) %>
+
+      </div>
+    </div>
+  <% end %>
+</div>
   <h3>検索</h3>
   <%= text_field_tag :search, params[:search], placeholder: "商品名で検索" %>
 
   <% ["メーカー", "種類", "特徴"].each do |cat| %>
     <h4><%= cat %>で検索</h4>
     <div class="tags">
-      <% Tag.where(category: cat).each do |tag| %>
+      <% Tag.where(category: cat).pluck(:name).uniq.each do |tag_name| %>
+        <% tag = Tag.find_by(name: tag_name, category: cat) %>
         <div class="tag">
           <%= check_box_tag "tag_ids[#{tag.id}]", "1", params.dig(:tag_ids, tag.id.to_s) == "1", id: "tag_ids_#{tag.id}" %>
           <%= label_tag "tag_ids_#{tag.id}", tag.name %>
@@ -16,6 +42,7 @@
     </div>
   <% end %>
 
+
   <%= submit_tag '検索' %>
 <% end %>
 
@@ -23,26 +50,3 @@
 
 <%= link_to "新規投稿へ", new_tweet_path %>
 
-<div class="tweets-container">
-  <% @tweets.each do |t| %>
-    <div class="tweet">
-      <% if t.image? %>
-          <%= image_tag t.image, size: '250x200'%>      
-      <% end %>
-
-    <div class="main-box">
-      <div class="left-container">
-        <%= t.club %>
-      </div>git commit -m
-
-      <div class="right-container">
-        <p><%= t.created_at %></p>
-        <%= link_to "詳細へ", tweet_path(t.id) %>
-        <%= link_to "編集する", edit_tweet_path(t.id) %>
-        <%= button_to "削除する", tweet_path(t.id), method: :delete %>
-      </div>
-    </div>
-
-    <p class="time"><%= t.created_at %></p>
-  <% end %>
-</div>
