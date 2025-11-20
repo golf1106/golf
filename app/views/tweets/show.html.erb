@@ -12,6 +12,13 @@
         <p class="point">
           <strong>ポイント：</strong><%= @tweet.point %>
         </p>
+        <p class="price-new">
+          <strong>新品価格：</strong><%= @tweet.price_new %>
+        </p>
+
+        <p class="price-used">
+          <strong>中古価格：</strong><%= @tweet.price_used %>
+        </p>
 
         <% if @tweet.image.present? %>
           <div class="image-wrap">

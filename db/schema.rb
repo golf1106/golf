@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_11_17_125357) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_20_150613) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,12 +57,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_11_17_125357) do
 
   create_table "tweets", force: :cascade do |t|
     t.string "club"
-    t.integer "price"
+    t.string "price"
     t.text "point"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
     t.string "brand"
+    t.string "price_new"
+    t.string "price_used"
   end
 
   create_table "users", force: :cascade do |t|
