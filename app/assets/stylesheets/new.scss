@@ -1,0 +1,109 @@
+/* ▼ ページタイトル */
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* ▼ フォーム全体 */
+form {
+  background: #ffffff;
+  padding: 25px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ▼ タグ選択エリア */
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  background: #f7f7f7;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.form-check-input {
+  margin-right: 6px;
+}
+
+/* ▼ 各入力フィールド */
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fafafa;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+/* ▼ 画像アップロード */
+.field input[type="file"] {
+  background: #fff;
+  padding: 5px;
+  border: none;
+}
+
+/* ▼ 送信ボタン */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+input[type="submit"]:hover {
+  background: #2563eb;
+}
+
+/* ▼ 戻るリンク */
+a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}

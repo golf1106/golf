@@ -5,22 +5,95 @@ body {
   background-image: url("dfb3bf50e2c189026fb0402b7fc0dbe9_t.jpeg");
   background-size: cover;
 }
-
+/* ===========================
+   ヘッダー全体
+=========================== */
 .site-header {
-  background: #0c5c2f;        /* ゴルフ場っぽい緑 */
-  color: #fff;
-  padding: 12px 0;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+  width: 100%;
+  padding: 20px 0;
+
+  /* 斜めフェアウェイ風グラデーション */
+  background: linear-gradient(135deg, #1f5e2e 0%, #2e8b57 50%, #3cb371 100%);
+  border-bottom: 4px solid #d7c089; /* 高級感のあるゴールドライン */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* 上質な立体感 */
 }
 
-.header-inner {
-  width: 92%;
-  max-width: 1100px;
+/* ヘッダー内部 */
+.site-header .header-inner {
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between; /* 左・中央・右 */
+  gap: 20px;
+  padding: 0 20px;
 }
+
+/* 左：ゴルフボールロゴ */
+.site-header .header-logo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+
+  /* ディンプル模様 */
+  background-image:
+      radial-gradient(circle, rgba(0,0,0,0.15) 20%, transparent 21%),
+      radial-gradient(circle, rgba(0,0,0,0.15) 20%, transparent 21%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}
+
+.site-header .header-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 中央：タイトル */
+.site-header .header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6); /* 白文字に黒影で視認性UP */
+
+  /* ゴルフっぽい高級フォント */
+  font-family: 'Cinzel Decorative', serif;
+
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.03);
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  }
+}
+
+/* 右：ナビメニュー */
+.site-header .nav-menu ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header .nav-menu li a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-header .nav-menu li a:hover {
+  color: #f0f8c2; /* 芝生風ハイライト */
+}
+
 
 .logo {
   margin: 0;

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Golf Club Select</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<%= stylesheet_link_tag 'application', :media => "all" %>
+<%= javascript_importmap_tags %>
+<header class="site-header">
+  <div class="header-inner">
+    <!-- 左：ゴルフボールロゴ -->
+    <div class="header-logo">
+      <%= image_tag "ごるｈ.avif", alt: "Golf Ball Logo" %>
+    </div>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <h1 class="logo">Golf Club Select</h1>
-        <nav class="nav-menu">
-          <ul>
-            <li><%= link_to "ホーム", tweets_path %></li>
-            <li><%= link_to "クラブ一覧", tweets_path %></li>
-            <li><%= link_to "検索ページ", search_path %></li>
-
-            </ul>
-        </nav>
-      </div>
-    </header>
+    <!-- 中央：サイトタイトル -->
+    <h1 class="header-title">Golf Club Select</h1>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+      </head>
+    <!-- 右：ナビゲーション -->
+    <nav class="nav-menu">
+      <ul>
+        <li><%= link_to "ホーム", tweets_path %></li>
+        <li><%= link_to "クラブ一覧", tweets_path %></li>
+        <li><%= link_to "検索ページ", search_path %></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
     <main class="main-content">
       <%= yield %>
