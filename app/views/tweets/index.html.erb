@@ -1,4 +1,5 @@
-<%= form_with url: tweets_path, method: :get, local: true do %>
+
+
   <h2 class="page-title">ゴルフクラブ一覧</h2>
 
 <div class="club-list">
@@ -17,7 +18,7 @@
         <h3 class="club-name"><%= club.club %></h3>
         <p class="club-brand"><%= club.brand %></p>
 
-        <%= link_to "詳細を見る", tweet_path(club), class: "detail-btn" %>
+        <%= link_to "詳細を見る", tweet_path(club), class: "detail-btn" %><>
         <%= button_to "削除する", tweet_path(club), method: :delete %>
         <%= link_to "編集する", edit_tweet_path(club) %>
 
@@ -26,6 +27,7 @@
   <% end %>
 </div>
   <h3>検索</h3>
+  <%= form_with url: tweets_path, method: :get, local: true do %>
   <%= text_field_tag :search, params[:search], placeholder: "商品名で検索" %>
 
   <% ["メーカー", "種類", "特徴"].each do |cat| %>

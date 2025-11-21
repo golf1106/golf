@@ -3,22 +3,18 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
     @tags = Tag.all
 
-    # キーワード検索
-    if params[:search].present?
-      keyword = "%#{params[:search]}%"
-      @tweets = @tweets.where("club LIKE ? OR price LIKE ?", keyword, keyword)
-    end
-
-    # タグ検索
-    if params[:tag_ids].present?
-      selected_tag_ids = params[:tag_ids].select { |_k, v| v == "1" }.keys
-      if selected_tag_ids.any?
-        @tweets = @tweets.joins(:tags).where(tags: { id: selected_tag_ids }).distinct
-      else
-        @tweets = Tweet.none
-      end
-    end
+  if params[:search].present?
+    keyword = "%#{params[:search]}%"
+    @tweets = @tweets.where("club LIKE ?", keyword)
   end
+
+  if params[:tag_ids].present?
+    tag_ids = params[:tag_ids].keys
+    @tweets = @tweets.joins(:tags).where(tags: { id: tag_ids }).distinct
+  end
+
+  render :index
+end
 
   def search
     if params[:keyword].present?

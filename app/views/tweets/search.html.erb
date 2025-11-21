@@ -1,7 +1,7 @@
 <h2 class="page-title">クラブ検索</h2>
 
 <div class="search-box">
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
+<%= form_with url: search_path, method: :get, local: true do %>
     <%= f.text_field :keyword, placeholder: "クラブ名・キーワードで検索", class: "search-input" %>
     <%= f.submit "検索", class: "search-btn" %>
   <% end %>
