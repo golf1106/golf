@@ -1,6 +1,26 @@
 
+  <h2>検索</h2>
+  <%= form_with url: tweets_path, method: :get, local: true do %>
+  <%= text_field_tag :search, params[:search], placeholder: "商品名で検索" %>
 
-  <h2 class="page-title">ゴルフクラブ一覧</h2>
+  <% ["メーカー", "種類", "特徴"].each do |cat| %>
+    <h4><%= cat %>で検索</h4>
+    <div class="tags">
+      <% Tag.where(category: cat).pluck(:name).uniq.each do |tag_name| %>
+        <% tag = Tag.find_by(name: tag_name, category: cat) %>
+        <div class="tag">
+          <%= check_box_tag "tag_ids[#{tag.id}]", "1", params.dig(:tag_ids, tag.id.to_s) == "1", id: "tag_ids_#{tag.id}" %>
+          <%= label_tag "tag_ids_#{tag.id}", tag.name %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <%= submit_tag '検索' %>
+<% end %>
+
+  <h3 class="page-title">ゴルフクラブ一覧</h3>
 
 <div class="club-list">
   <% @tweets.each do |club| %>
@@ -26,26 +46,6 @@
     </div>
   <% end %>
 </div>
-  <h3>検索</h3>
-  <%= form_with url: tweets_path, method: :get, local: true do %>
-  <%= text_field_tag :search, params[:search], placeholder: "商品名で検索" %>
-
-  <% ["メーカー", "種類", "特徴"].each do |cat| %>
-    <h4><%= cat %>で検索</h4>
-    <div class="tags">
-      <% Tag.where(category: cat).pluck(:name).uniq.each do |tag_name| %>
-        <% tag = Tag.find_by(name: tag_name, category: cat) %>
-        <div class="tag">
-          <%= check_box_tag "tag_ids[#{tag.id}]", "1", params.dig(:tag_ids, tag.id.to_s) == "1", id: "tag_ids_#{tag.id}" %>
-          <%= label_tag "tag_ids_#{tag.id}", tag.name %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-
-  <%= submit_tag '検索' %>
-<% end %>
 
 <%= stylesheet_link_tag 'index', media: "all" %>
 
